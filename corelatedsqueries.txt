@@ -1,0 +1,44 @@
+//here there are two main things 
+--> to use in/not in
+--> to use exits/not exits
+1>write a sql query to display maximum salary of employee
+ans>select max(salary) from employee
+
+2>write a sql query to display the details of person who takes max_salary
+select * from employee e
+where e.salary=(
+select max(salary) from employee) //nested 
+
+3> query to display the second highest salary person details from emp table
+method 1;
+select *from employee e
+        where e.salary=(
+        select salary
+        from employee
+        order by salary DESC
+        LIMIT 1 OFFSET 1) //nested 
+
+method 2;
+select *from (
+    select e.*,
+    rank() over(order by salary DESC) as rnk
+    from employee e) x ///window function
+where x.rnk =2
+
+method 3;
+//corelated subquery 
+select *from emplpoyee e1
+where N-1=(select count(Distinct salary)
+        from Emp e2
+        where e2.salary>e1.salary)
+
+
+4> find the name of employee who is working on Project
+           
+select e.ename  from employee  e //nested query
+where e.id IN(select Distinct(p.eid) from project p)
+
+5> find the details of emp who is working on atleast one project
+select e1.ename from employee e1
+where e1.id exits(select e2.id from project e2
+where e1.id=e2.id)  //corelated subquery
