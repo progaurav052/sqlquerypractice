@@ -36,3 +36,6 @@ where id not in(
                 group by model,brand 
                 having count(*)>1
             )
+
+
+            

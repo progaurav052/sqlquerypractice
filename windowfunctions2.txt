@@ -1,0 +1,24 @@
+nthvalue ,ntile and percent_rank
+
+//lets say our table is 
+| product_category | brand | product_name | price |
+1> write an query to display the second most expensive product under each category
+    select * from(
+                select p.*,
+                rank() over(partition by product_category,order by price) as rnk
+                from product) x
+    where x.rnk=2;
+2> we want to fetch details of the nth highest salary in the table 
+
+    select *from (
+        select e.*,
+        rank() over(order by salary) as rnk
+        from employee) x
+        where x.rnk = n;
+
+3> using limit function:
+    SELECT *from
+    employee
+    ORDER BY salary DESC
+    LIMIT 1 OFFSET 2;
+
