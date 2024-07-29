@@ -18,3 +18,7 @@ notnull
 unique
 primarykey
 foreign key
+
+
+what did i learn ??
+

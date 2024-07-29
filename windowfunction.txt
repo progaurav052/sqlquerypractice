@@ -1,0 +1,35 @@
+//what is the use of window function ??
+-->used to write complex queries easily -->kind of shortcut
+-->row_number(),rank(),dense_rank() are some examples of window functions
+
+lets says we have the following table 
+| emp_id | emp_name | dept_name | salary |
+
+//now we need to add an column to this table which the maximum salary of the table --> we can solve this normally also
+
+//using window function ,analytic function
+
+<---------query1-------------->
+    select e.*,   -----> this will add another columns called max_salary
+    max(salary) over() as max_salary
+    from employee e  
+
+//find the oldest 2 employees of every dept_name
+<---------query2-------------->
+    select * from(
+        select e.*,
+        row_number() over(partition by dept_name order by emp_id) as rn
+        from employee e) x
+    where x.rn < 3
+
+//select top 3 employees with maximum salary in every departement 
+<----------query3--------------->
+    select * from(
+        select e.*,
+        row_number() over(partition by dept_name order by emp_id) as rn
+        rank() over(partition by dept_name order by salary) as rnk
+        dense_rank() over(partition by dept_name order by salary) as dns_rnk
+        from employee e) x
+    where x.rnk <= 3 
+
+    
