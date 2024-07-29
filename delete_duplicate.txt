@@ -1,0 +1,38 @@
+//we will study various methods to delete duplicate data over here 
+
+//duplicacy is in relation with attributes here , it can be with 1 attribute or 1 or more attribute 
+
+
+--->trick : first identify duplicate + use delete statement 
+lets say we have the table 
+
+| id | model | brand | color |
+
+//here we have duplicacy defined by two attribute model_name and brand_name
+<------using unique id -------->
+delete from cars 
+where id in(
+            select max(id)
+            from car 
+            group by model,brand 
+            having count(*)>1
+            )
+
+<---------using window function ---------->
+delete from cars
+where id in(
+                select id from(
+                select c.*,
+                row_number() over(partition by model,brand) as rn
+                from car c) as X
+                where x.rn>1
+            )
+
+<----------------using min function---------------->
+delete from cars 
+where id not in(
+                select min(id)
+                from car 
+                group by model,brand 
+                having count(*)>1
+            )
