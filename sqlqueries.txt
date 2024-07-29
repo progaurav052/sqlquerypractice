@@ -1,0 +1,20 @@
+Sql--->structured query language
+
+Sql is used in RDBMS
+
+DDL-->craete , drop, alter , truncate
+DML--> insert, update, delete , Merge
+dql--> select
+tcl--> commit, rollback
+dcl--> grant, revoke .
+
+types of data 
+varchar, int , float , date, boolean
+
+
+constraints::
+check
+notnull
+unique
+primarykey
+foreign key

@@ -1,0 +1,13 @@
+//what is data ?
+//what is database ??
+//types of database ??
+//eg of databases ?
+//what is DBMS and RDBMS ?
+//different types of database --->
+>>relational and non-relationaal
+>>relational:: rows and columns ,foreign keys, primary-keys
+>>nonrelational:: key-value,Document,Graph,widecolumn
+Document ---> JSON,BSON,XML , ---->mongoDB---->Each document contains data in a key-value format but allows for nesting and hierarchical data structures.
+key-value --->Key-value databases store data as a collection of key-value pairs.
+graph ---> nodes and edges 
+ 
